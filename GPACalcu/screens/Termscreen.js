@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CoursesList from "../components/CoursesList/CoursesList";
 
@@ -8,7 +8,6 @@ export default function Termscreen() {
 
   return (
       <View style={styles.container}>
-        
         <CoursesList />
       </View>
   );

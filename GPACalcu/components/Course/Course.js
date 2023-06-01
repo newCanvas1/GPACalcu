@@ -44,7 +44,7 @@ export default function Course({
       />
       <SelectDropdown
         data={grades}
-        buttonStyle={{ backgroundColor: "transparent", width: 100, height: 30 }}
+        buttonStyle={{ backgroundColor: "transparent", width: 100, height: 30,opacity:0.2 }}
         onSelect={(grade, index) => {
           setGrade(grade);
           updateGrade(id, grade);
