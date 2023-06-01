@@ -1,40 +1,19 @@
-import { StyleSheet, Text, View } from "react-native";
-import Button from "../components/Button/Button";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import Header from "../components/Header/Header";
+import Choices from "../components/Choices/Choices";
 import { useNavigation } from "@react-navigation/native";
-
 export default function Homescreen() {
-  const navigation = useNavigation();
-
   return (
-    
-    <View style={styles.container}>
-      <View style={styles.buttonsContainer}>
-        <Button
-          text={"Term"}
-          action={() => {
-            navigation.navigate("Term");
-          }}
-        />
-        <Button
-          text={"Total"}
-          action={() => {
-            console.log("Clicked Total");
-          }}
-        />
-      </View>
-    </View>
+    <SafeAreaView style={styles.homeContainer}>
+      <Header />
+      <Choices />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  homeContainer: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonsContainer: {
-    flexDirection: "row",
-    gap: 50,
+    flexDirection: "column",
   },
 });
