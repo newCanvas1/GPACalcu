@@ -1,22 +1,23 @@
-import { StyleSheet, Text, View } from "react-native";
-import { useNavigation } from '@react-navigation/native';
-import Course from "../components/Course/Course";
+import { StyleSheet, SafeAreaView, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import CoursesList from "../components/CoursesList/CoursesList";
+
 export default function Termscreen() {
-    const navigation = useNavigation();
+  // keep it to make a back button
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-     <Course />
-    </View>
+      <View style={styles.container}>
+        
+        <CoursesList />
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    marginTop:100
   },
-
 });

@@ -6,6 +6,7 @@ export default function Homescreen() {
   const navigation = useNavigation();
 
   return (
+    
     <View style={styles.container}>
       <View style={styles.buttonsContainer}>
         <Button
