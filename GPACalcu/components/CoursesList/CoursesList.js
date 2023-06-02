@@ -3,24 +3,24 @@ import {
   Text,
   TouchableOpacity,
   View,
-  FlatList
+  FlatList,
+  Dimensions
 } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useState,useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Course from "../Course/Course";
 
 export default function CoursesList() {
+  const {width} = Dimensions.get("screen")
   // keep it to make a back button
   const navigation = useNavigation();
 
-  const [coursesList, setCoursesList] = useState([
-
-  ]);
+  const [coursesList, setCoursesList] = useState([]);
 
   useEffect(() => {
     const getList = async () => {
-      const storedList = await AsyncStorage.getItem('courses');
+      const storedList = await AsyncStorage.getItem("courses");
       if (storedList) {
         setCoursesList(JSON.parse(storedList));
       }
@@ -92,7 +92,12 @@ export default function CoursesList() {
           +
         </Text>
       </TouchableOpacity>
-
+      <View style={{flexDirection:"row",width:width,justifyContent:"space-around",marginBottom:10}}>
+      <Text> الدرجة</Text>
+        <Text> الساعات</Text>
+        <Text>اسم المادة</Text>
+       
+      </View>
       <FlatList
         data={coursesList}
         renderItem={renderItem}
@@ -100,15 +105,15 @@ export default function CoursesList() {
         ItemSeparatorComponent={ItemSeparator}
       />
 
-<TouchableOpacity
+      <TouchableOpacity
         activeOpacity={1}
-        style={{...styles.addBtn,width:80}}
-        onPress={async() => {
-          await AsyncStorage.setItem('courses', JSON.stringify(coursesList));
+        style={{ ...styles.addBtn, width: 80 }}
+        onPress={async () => {
+          await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
         }}
       >
-        <Text style={{ color: "#fff", fontSize: 30, fontWeight: "bold" }}>
-          Save
+        <Text style={{ color: "#fff", fontSize: 20, fontWeight: "bold" }}>
+          احفظ
         </Text>
       </TouchableOpacity>
     </View>
@@ -118,7 +123,6 @@ export default function CoursesList() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },

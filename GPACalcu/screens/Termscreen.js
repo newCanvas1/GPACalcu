@@ -1,13 +1,13 @@
 import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CoursesList from "../components/CoursesList/CoursesList";
-
+import BackButton from "../components/Button/BackButton";
 export default function Termscreen() {
   // keep it to make a back button
-  const navigation = useNavigation();
 
   return (
       <View style={styles.container}>
+        <BackButton/>
         <CoursesList />
       </View>
   );
@@ -15,7 +15,6 @@ export default function Termscreen() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
     justifyContent: "flex-start",
     marginTop:100
   },
