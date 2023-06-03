@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   View,
   FlatList,
-  Dimensions
+  Dimensions,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect } from "react";
@@ -12,7 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import Course from "../Course/Course";
 
 export default function CoursesList() {
-  const {width} = Dimensions.get("screen")
+  const { width } = Dimensions.get("screen");
   // keep it to make a back button
   const navigation = useNavigation();
 
@@ -47,6 +47,14 @@ export default function CoursesList() {
       console.log(coursesList);
     }
   }
+  function deleteCourse(id) {
+    console.log("Delete", id);
+    let coursesWithoutDeleted = coursesList.filter((course) => {
+      return course.id != id;
+    });
+    setCoursesList(coursesWithoutDeleted);
+    console.log(coursesWithoutDeleted);
+  }
 
   const ItemSeparator = () => (
     <View
@@ -67,6 +75,7 @@ export default function CoursesList() {
       name={item.name}
       hours={item.hours}
       grade={item.grade}
+      deleteCourse={deleteCourse}
     />
   );
 
@@ -92,11 +101,17 @@ export default function CoursesList() {
           +
         </Text>
       </TouchableOpacity>
-      <View style={{flexDirection:"row",width:width,justifyContent:"space-around",marginBottom:10}}>
-      <Text> الدرجة</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          width: width,
+          justifyContent: "space-around",
+          marginBottom: 10,
+        }}
+      >
+        <Text> الدرجة</Text>
         <Text> الساعات</Text>
         <Text>اسم المادة</Text>
-       
       </View>
       <FlatList
         data={coursesList}

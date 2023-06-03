@@ -1,6 +1,14 @@
 import { useState } from "react";
-import { StyleSheet, Text, Dimensions, View, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  Dimensions,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 const { width } = Dimensions.get("screen");
 const grades = ["A+", "A", "B+", "B", "C+", "C", "D+", "D", "F"];
@@ -10,6 +18,7 @@ export default function Course({
   updateName,
   updateHours,
   updateGrade,
+  deleteCourse,
   name,
   hours,
   grade,
@@ -20,6 +29,14 @@ export default function Course({
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={{ position: "absolute", transform: [{ translateY: -10 }] }}
+        onPress={() => {
+          deleteCourse(id);
+        }}
+      >
+        <Icon name="delete" size={15} color={"#eb3434"} />
+      </TouchableOpacity>
       <TextInput
         style={styles.input}
         onChangeText={(name) => {
@@ -44,7 +61,12 @@ export default function Course({
       />
       <SelectDropdown
         data={grades}
-        buttonStyle={{ backgroundColor: "transparent", width: 50, height: 30,opacity:1 }}
+        buttonStyle={{
+          backgroundColor: "transparent",
+          width: 50,
+          height: 30,
+          opacity: 1,
+        }}
         onSelect={(grade, index) => {
           setGrade(grade);
           updateGrade(id, grade);
