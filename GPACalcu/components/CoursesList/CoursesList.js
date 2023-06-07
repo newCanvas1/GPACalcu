@@ -10,13 +10,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Course from "../Course/Course";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-export default function CoursesList() {
+const coureseHeight = 40;
+export default function CoursesList({ coursesList, setCoursesList }) {
   const { width } = Dimensions.get("screen");
   // keep it to make a back button
   const navigation = useNavigation();
-
-  const [coursesList, setCoursesList] = useState([]);
 
   useEffect(() => {
     const getList = async () => {
@@ -28,24 +28,33 @@ export default function CoursesList() {
     getList();
   }, []);
 
-  function updateName(index, newName) {
-    if (newName != undefined) {
-      coursesList[index].name = newName;
-      console.log(coursesList);
+  function updateName(id, newName) {
+    const newList = [...coursesList];
+    for (let i = 0; i < newList.length; i++) {
+      if (newList[i].id == id) {
+        newList[i].name = newName;
+      }
     }
+    setCoursesList(newList);
   }
 
-  function updateHours(index, newHours) {
-    if (newHours != undefined) {
-      coursesList[index].hours = newHours;
-      console.log(coursesList);
+  function updateHours(id, newHours) {
+    const newList = [...coursesList];
+    for (let i = 0; i < newList.length; i++) {
+      if (newList[i].id == id) {
+        newList[i].hours = newHours;
+      }
     }
+    setCoursesList(newList);
   }
-  function updateGrade(index, newGrade) {
-    if (newGrade != undefined) {
-      coursesList[index].grade = newGrade;
-      console.log(coursesList);
+  function updateGrade(id, newGrade) {
+    const newList = [...coursesList];
+    for (let i = 0; i < newList.length; i++) {
+      if (newList[i].id == id) {
+        newList[i].grade = newGrade;
+      }
     }
+    setCoursesList(newList);
   }
   function deleteCourse(id) {
     console.log("Delete", id);
@@ -122,14 +131,12 @@ export default function CoursesList() {
 
       <TouchableOpacity
         activeOpacity={1}
-        style={{ ...styles.addBtn, width: 80 }}
+        style={{ ...styles.addBtn, width: 60 }}
         onPress={async () => {
           await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
         }}
       >
-        <Text style={{ color: "#fff", fontSize: 20, fontWeight: "bold" }}>
-          احفظ
-        </Text>
+        <Icon name="content-save-check" size={30} color="white" />
       </TouchableOpacity>
     </View>
   );
