@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {colors} from '../../assets/color.js'
 import {
   StyleSheet,
   Text,
@@ -6,13 +7,12 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
+import DeleteButton from '../Button/DeleteButton'
 const { width } = Dimensions.get("screen");
 const grades = ["A+", "A", "B+", "B", "C+", "C", "D+", "D", "F"];
-
 export default function Course({
   id,
   updateName,
@@ -31,10 +31,10 @@ export default function Course({
     clicked ? { ...styles.clicked } : { ...styles.notClicked },
   ];
 
-  deleteZindex = clicked ?  1  :-1 ;
   return (
     <>
       <TouchableOpacity
+      activeOpacity={1}
         onPress={() => {
           setClicked((prev) => !prev);
         }}
@@ -70,6 +70,10 @@ export default function Course({
           </View>
           <View>
             <SelectDropdown
+              rowStyle={styles.row}
+              rowTextStyle={styles.rowText}
+              selectedRowStyle={styles.selectedRow}
+              dropdownStyle={{ backgroundColor: "transparent" }}
               data={grades}
               buttonStyle={{
                 backgroundColor: "transparent",
@@ -98,19 +102,8 @@ export default function Course({
           </View>
         </View>
       </TouchableOpacity>
-
-      <TouchableOpacity
-        style={{
-          position: "absolute",
-          transform: [{ translateY: 40 }, { translateX: 355 }],
-          zIndex: deleteZindex,
-        }}
-        onPress={() => {
-          deleteCourse(id);
-        }}
-      >
-        <Icon name="delete" size={20} color={"#eb3434"} />
-      </TouchableOpacity>
+<DeleteButton clicked={clicked} id={id} deleteCourse={deleteCourse}/>
+      
     </>
   );
 }
@@ -124,10 +117,13 @@ const styles = StyleSheet.create({
     width: width - 20,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: "#006CD0",
+    backgroundColor: colors.THEME,
   },
   notClicked: { borderBottomRightRadius: 10 },
   clicked: { borderBottomRightRadius: 140 },
 
   nameHours: { flexDirection: "column" },
+  row: { backgroundColor:  colors.THEME, borderRadius: 20, marginBottom: 10 },
+  rowText:{color:"white",fontWeight:"bold" },
+  selectedRow:{backgroundColor:"green"}
 });
