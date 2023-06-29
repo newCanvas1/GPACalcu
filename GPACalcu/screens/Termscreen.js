@@ -4,7 +4,6 @@ import GpaSection from "../components/GpaSection/GpaSection";
 import CoursesList from "../components/CoursesList/CoursesList";
 import BackButton from "../components/Button/BackButton";
 import CalcGpa from "../components/CalcGpa/CalcGpa";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Termscreen() {
   const gpaSystem = { five: 5, four: 4 };
@@ -15,12 +14,14 @@ export default function Termscreen() {
     <View style={styles.container}>
       <BackButton />
       <CoursesList coursesList={coursesList} setCoursesList={setCoursesList} />
+
       <CalcGpa
         coursesList={coursesList}
         setGpa={setGpa}
         system={gpaSystem.four}
       />
       <GpaSection gpa={gpa} />
+      
     </View>
   );
 }

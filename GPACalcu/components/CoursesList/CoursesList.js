@@ -1,23 +1,10 @@
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  FlatList,
-  Dimensions,
-} from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useEffect } from "react";
 import Course from "../Course/Course";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
-const coureseHeight = 40;
+import SaveButton from "../Button/SaveButton";
+import AddButton from "../Button/AddButton";
 export default function CoursesList({ coursesList, setCoursesList }) {
-  const { width } = Dimensions.get("screen");
-  // keep it to make a back button
-  const navigation = useNavigation();
-
   useEffect(() => {
     const getList = async () => {
       const storedList = await AsyncStorage.getItem("courses");
@@ -81,63 +68,23 @@ export default function CoursesList({ coursesList, setCoursesList }) {
       updateGrade={updateGrade}
       key={item.id}
       id={item.id}
-      name={item.name}
-      hours={item.hours}
-      grade={item.grade}
+      item={item}
       deleteCourse={deleteCourse}
     />
   );
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        activeOpacity={1}
-        style={styles.addBtn}
-        onPress={() => {
-          let newID = coursesList.length;
-          setCoursesList([
-            ...coursesList,
-            {
-              name: "",
-              hours: 0,
-              grade: 'A+',
-              id: newID,
-            },
-          ]);
-        }}
-      >
-        <Text style={{ color: "blue", fontSize: 30, fontWeight: "bold" }}>
-          +
-        </Text>
-      </TouchableOpacity>
-      <View
-        style={{
-          flexDirection: "row",
-          width: width,
-          justifyContent: "space-around",
-          marginBottom: 10,
-        }}
-      >
-        <Text> الدرجة</Text>
-        <Text> الساعات</Text>
-        <Text>اسم المادة</Text>
-      </View>
+      <AddButton coursesList={coursesList} setCoursesList={setCoursesList} />
+
       <FlatList
         data={coursesList}
         renderItem={renderItem}
         style={{ height: 300 }}
         ItemSeparatorComponent={ItemSeparator}
       />
-
-      <TouchableOpacity
-        activeOpacity={1}
-        style={{ ...styles.addBtn, width: 60,}}
-        onPress={async () => {
-          await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
-        }}
-      >
-        <Icon name="content-save-check" size={30} color="blue" />
-      </TouchableOpacity>
+      <SaveButton coursesList={coursesList} />
+      <View style={{ flex: 1 }}></View>
     </View>
   );
 }

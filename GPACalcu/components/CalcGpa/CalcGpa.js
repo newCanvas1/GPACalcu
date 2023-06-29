@@ -13,19 +13,7 @@ export default function CalcGpa({ coursesList, setGpa, system }) {
     getGpa();
   }, [coursesList]);
 
-  return (
-    <>
-    <TouchableOpacity
-      style={{ alignSelf: "center" }}
-      onPress={async () => {
-        await getGpa();
-      }}
-    >
-      <Text>احسب</Text>
-    </TouchableOpacity>
-    </>
-    
-  );
+  return <></>;
 }
 
 const styles = StyleSheet.create({});

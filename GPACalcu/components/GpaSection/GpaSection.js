@@ -2,9 +2,6 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 
 export default function GpaSection({ gpa }) {
-
-
-  
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{gpa}</Text>
@@ -15,10 +12,15 @@ export default function GpaSection({ gpa }) {
 const styles = StyleSheet.create({
   container: {
     alignSelf: "center",
-    backgroundColor: "blue",
+    backgroundColor: "#006CD0",
     padding: 10,
     width: "80%",
     borderRadius: 10,
   },
-  text: { color: "#fff", fontWeight: "bold",alignSelf:"center" },
+  text: {
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    fontSize: 20,
+  },
 });

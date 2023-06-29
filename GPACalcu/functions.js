@@ -1,4 +1,5 @@
 import { gradesPoints } from "./screens/constants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 async function calculateTotalHours(coursesList) {
   let total = 0;
@@ -40,4 +41,18 @@ async function calculateGpa(coursesList, system) {
   return newGpa;
 }
 
-module.exports = { calculateTotalHours, calculateEarnedHours, calculateGpa };
+async function getFromStorage(key) {
+  const storedList = await AsyncStorage.getItem(key);
+  if (storedList) {
+    return storedList;
+  } else {
+    return "Not Found";
+  }
+}
+
+module.exports = {
+  calculateTotalHours,
+  calculateEarnedHours,
+  calculateGpa,
+  getFromStorage,
+};
