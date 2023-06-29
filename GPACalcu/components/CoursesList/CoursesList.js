@@ -99,14 +99,14 @@ export default function CoursesList({ coursesList, setCoursesList }) {
             ...coursesList,
             {
               name: "",
-              hours: "",
-              grade: "",
+              hours: 0,
+              grade: 'A+',
               id: newID,
             },
           ]);
         }}
       >
-        <Text style={{ color: "#fff", fontSize: 30, fontWeight: "bold" }}>
+        <Text style={{ color: "blue", fontSize: 30, fontWeight: "bold" }}>
           +
         </Text>
       </TouchableOpacity>
@@ -131,12 +131,12 @@ export default function CoursesList({ coursesList, setCoursesList }) {
 
       <TouchableOpacity
         activeOpacity={1}
-        style={{ ...styles.addBtn, width: 60 }}
+        style={{ ...styles.addBtn, width: 60,}}
         onPress={async () => {
           await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
         }}
       >
-        <Icon name="content-save-check" size={30} color="white" />
+        <Icon name="content-save-check" size={30} color="blue" />
       </TouchableOpacity>
     </View>
   );
@@ -152,7 +152,6 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginRight: 20,
     marginBottom: 10,
-    backgroundColor: "blue",
     width: 30,
     alignItems: "center",
     borderTopLeftRadius: 30,
