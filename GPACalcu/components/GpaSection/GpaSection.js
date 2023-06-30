@@ -2,11 +2,16 @@ import { useContext } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { MyContext } from "../../context";
 export default function GpaSection() {
-  const { gpa } = useContext(MyContext);
-
+  const { gpa, coursesList, enterHours } = useContext(MyContext);
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{gpa==0?"Enter Courses":gpa}</Text>
+      <Text style={styles.text}>
+        {coursesList.length == 0
+          ? "أدخل مواد"
+          : enterHours
+          ? "أدخل ساعات"
+          : gpa}
+      </Text>
     </View>
   );
 }

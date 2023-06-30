@@ -1,6 +1,7 @@
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
 import { useContext } from "react";
 import { MyContext } from "../../context";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 export default function AddButton() {
   const { coursesList, setCoursesList } = useContext(MyContext);
 
@@ -22,20 +23,14 @@ export default function AddButton() {
       style={styles.addBtn}
       onPress={addCourse}
     >
-      <Text style={{ color: "white" }}>+</Text>
+      <Icon name="plus-box" size={30} color="#006CD0" />
     </TouchableOpacity>
   );
 }
 const styles = StyleSheet.create({
   addBtn: {
     alignSelf: "flex-end",
-    marginRight: 20,
+    marginRight: 10,
     marginBottom: 10,
-    width: 30,
-    height: 30,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "blue",
-    borderRadius: 40,
   },
 });

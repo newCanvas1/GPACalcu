@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useMemo } from "react";
 export const MyContext = createContext();
 export const CourseContext = createContext();
 
@@ -7,6 +7,17 @@ export const MyContextProvider = ({ children }) => {
   const [coursesList, setCoursesList] = useState([]);
   const [gpa, setGpa] = useState(0.0);
   const [gpaSystem, setGpaSystem] = useState(gpaSystemOptions.four);
+  const [enterHours, setEnterHours] = useState(false);
+  useMemo(() => {
+    setEnterHours(false);
+    for (let i = 0; i < coursesList.length; i++) {
+      let course = coursesList[i];
+      if (course.hours == 0) {
+        setEnterHours(true);
+      }
+    }
+  }, [coursesList]);
+
   return (
     <MyContext.Provider
       value={{
@@ -16,6 +27,7 @@ export const MyContextProvider = ({ children }) => {
         setGpa,
         gpaSystem,
         setGpaSystem,
+        enterHours,
       }}
     >
       {children}

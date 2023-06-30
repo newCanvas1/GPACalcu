@@ -34,14 +34,18 @@ export default function CoursesList() {
   return (
     <View style={styles.container}>
       <AddButton />
-      <FlatList
-        data={coursesList}
-        renderItem={renderItem}
-        style={{ height: 300 }}
-        ItemSeparatorComponent={ItemSeparator}
-      />
-      <SaveButton />
-      <View style={{ flex: 1 }}></View>
+      {coursesList != 0 && (
+        <>
+          <FlatList
+            data={coursesList}
+            renderItem={renderItem}
+            style={{ height: 300 }}
+            ItemSeparatorComponent={ItemSeparator}
+          />
+          <SaveButton />
+        </>
+      )}
+
     </View>
   );
 }

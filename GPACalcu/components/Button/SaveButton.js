@@ -13,7 +13,7 @@ export default function SaveButton() {
     <>
       <TouchableOpacity
         activeOpacity={1}
-        style={{ ...styles.addBtn, width: 60 }}
+        style={styles.addBtn}
         onPress={async () => {
           await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
           setShowSaveNotification(true);
@@ -22,7 +22,7 @@ export default function SaveButton() {
           }, 2000);
         }}
       >
-        <Icon name="content-save-check" size={30} color="blue" />
+        <Icon name="content-save-check" size={30} color="#006CD0" />
       </TouchableOpacity>
       {showSaveNotification ? (
         <Snackbar
@@ -48,11 +48,8 @@ export default function SaveButton() {
 }
 const styles = StyleSheet.create({
   addBtn: {
-    alignSelf: "flex-end",
-    marginRight: 20,
-    marginBottom: 10,
-    width: 30,
-    alignItems: "center",
-    borderTopLeftRadius: 30,
+    position:"absolute"
+    ,top:600
+    ,right:10
   },
 });
