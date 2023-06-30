@@ -1,5 +1,5 @@
-import { useState,useContext} from "react";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { useState, useContext } from "react";
+import { TouchableOpacity, StyleSheet, Text } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Snackbar } from "@react-native-material/core";
@@ -18,8 +18,7 @@ export default function SaveButton() {
           await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
           setShowSaveNotification(true);
           setTimeout(() => {
-          setShowSaveNotification(false);
-            
+            setShowSaveNotification(false);
           }, 2000);
         }}
       >
@@ -28,7 +27,18 @@ export default function SaveButton() {
       {showSaveNotification ? (
         <Snackbar
           message="Saved"
-          style={{ height: 50, width: 100,top:-30,position:"absolute" }}
+          action={
+            <Text>
+              <Icon name="check" size={20} color={"#ffffff"} />
+            </Text>
+          }
+          style={{
+            height: 50,
+            width: 100,
+            top: -30,
+            position: "absolute",
+            backgroundColor: "green",
+          }}
         />
       ) : (
         <></>
