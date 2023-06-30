@@ -6,7 +6,7 @@ export default function GpaSection() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{gpa}</Text>
+      <Text style={styles.text}>{gpa==0?"Enter Courses":gpa}</Text>
     </View>
   );
 }
