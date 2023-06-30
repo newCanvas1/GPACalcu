@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet,SafeAreaView } from "react-native";
 import Header from "../components/Header/Header";
 import Choices from "../components/Choices/Choices";
-import { useNavigation } from "@react-navigation/native";
 export default function Homescreen() {
+
   return (
     <SafeAreaView style={styles.homeContainer}>
       <Header />

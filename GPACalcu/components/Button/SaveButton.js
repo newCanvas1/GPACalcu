@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState,useContext} from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Snackbar } from "@react-native-material/core";
+import { MyContext } from "../../context";
 
-export default function SaveButton({ coursesList }) {
+export default function SaveButton() {
+  const { coursesList } = useContext(MyContext);
+
   const [showSaveNotification, setShowSaveNotification] = useState(false);
   return (
     <>

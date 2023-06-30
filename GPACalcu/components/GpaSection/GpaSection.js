@@ -1,7 +1,9 @@
-import React from "react";
+import { useContext } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { MyContext } from "../../context";
+export default function GpaSection() {
+  const { gpa } = useContext(MyContext);
 
-export default function GpaSection({ gpa }) {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{gpa}</Text>

@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useEffect, useContext } from "react";
+import { StyleSheet } from "react-native";
 import { calculateGpa } from "../../functions.js";
-export default function CalcGpa({ coursesList, setGpa, system }) {
+import { MyContext } from "../../context.js";
+export default function CalcGpa() {
+  const { coursesList,setGpa,gpaSystem } = useContext(MyContext);
+
   async function getGpa() {
-    let gpa = await calculateGpa(coursesList, system);
+    let gpa = await calculateGpa(coursesList, gpaSystem);
     setGpa(gpa);
     if (isNaN(gpa)) {
       setGpa(0.0);

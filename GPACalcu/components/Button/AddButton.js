@@ -1,5 +1,9 @@
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
-export default function AddButton({ coursesList, setCoursesList }) {
+import { useContext } from "react";
+import { MyContext } from "../../context";
+export default function AddButton() {
+  const { coursesList, setCoursesList } = useContext(MyContext);
+
   function addCourse() {
     let newID = coursesList.length;
     setCoursesList([

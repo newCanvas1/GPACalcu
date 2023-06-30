@@ -1,5 +1,5 @@
-import { useState } from "react";
-import {colors} from '../../assets/color.js'
+import { useState, useContext } from "react";
+import { colors } from "../../assets/color.js";
 import {
   StyleSheet,
   Text,
@@ -7,25 +7,18 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  
 } from "react-native";
+import { CourseContext } from "../../context.js";
 import SelectDropdown from "react-native-select-dropdown";
-import DeleteButton from '../Button/DeleteButton'
+import DeleteButton from "../Button/DeleteButton";
 const { width } = Dimensions.get("screen");
 const grades = ["A+", "A", "B+", "B", "C+", "C", "D+", "D", "F"];
-export default function Course({
-  id,
-  updateName,
-  updateHours,
-  updateGrade,
-  deleteCourse,
-  item,
-}) {
+export default function Course({ id, item }) {
   const [courseName, setName] = useState(item.name);
   const [courseHours, setHours] = useState(item.hours);
   const [courseGrade, setGrade] = useState(item.grade);
   const [clicked, setClicked] = useState(false);
-
+  const { updateGrade, updateHours, updateName } = useContext(CourseContext);
   const styleClicked = [
     { ...styles.container },
     clicked ? { ...styles.clicked } : { ...styles.notClicked },
@@ -34,7 +27,7 @@ export default function Course({
   return (
     <>
       <TouchableOpacity
-      activeOpacity={1}
+        activeOpacity={1}
         onPress={() => {
           setClicked((prev) => !prev);
         }}
@@ -60,8 +53,8 @@ export default function Course({
                   setHours(hours);
                   updateHours(id, hours);
                 }}
-                value={courseHours}
-                defaultValue={courseHours}
+                value={`${courseHours}`}
+                defaultValue={`${courseHours}`}
                 placeholder="Hours"
                 keyboardType="decimal-pad"
               />
@@ -102,8 +95,7 @@ export default function Course({
           </View>
         </View>
       </TouchableOpacity>
-<DeleteButton clicked={clicked} id={id} deleteCourse={deleteCourse}/>
-      
+      <DeleteButton clicked={clicked} id={id} />
     </>
   );
 }
@@ -123,7 +115,7 @@ const styles = StyleSheet.create({
   clicked: { borderBottomRightRadius: 140 },
 
   nameHours: { flexDirection: "column" },
-  row: { backgroundColor:  colors.THEME, borderRadius: 20, marginBottom: 10 },
-  rowText:{color:"white",fontWeight:"bold" },
-  selectedRow:{backgroundColor:"green"}
+  row: { backgroundColor: colors.THEME, borderRadius: 20, marginBottom: 10 },
+  rowText: { color: "white", fontWeight: "bold" },
+  selectedRow: { backgroundColor: "green" },
 });

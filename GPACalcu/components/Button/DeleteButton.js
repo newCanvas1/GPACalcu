@@ -1,12 +1,13 @@
+import { useContext } from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
-export default function DeleteButton({ id, deleteCourse,clicked }) {
- const deleteZindex = clicked ? 1 : -1;
-
+import { CourseContext } from "../../context";
+export default function DeleteButton({ id, clicked }) {
+  const deleteZindex = clicked ? 1 : -1;
+  const { deleteCourse } = useContext(CourseContext);
   return (
     <TouchableOpacity
-    style={[{...styles.button},{zIndex:deleteZindex}]}
+      style={[{ ...styles.button }, { zIndex: deleteZindex }]}
       onPress={() => {
         deleteCourse(id);
       }}
