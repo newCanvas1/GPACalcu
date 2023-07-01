@@ -14,7 +14,7 @@ export default function Choices() {
       <Button
         text={"المعدل التراكمي"}
         action={() => {
-          console.log("Clicked Total");
+          navigation.navigate("Total");
         }}
       />
     </View>
@@ -23,7 +23,7 @@ export default function Choices() {
 
 const styles = StyleSheet.create({
   buttonsContainer: {
-    gap: 3,
+    gap: 30,
     alignItems: "center",
   },
 });

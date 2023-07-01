@@ -1,9 +1,10 @@
 import React, { createContext, useState, useContext, useMemo } from "react";
 export const MyContext = createContext();
 export const CourseContext = createContext();
+export const TotalGpa = createContext();
 
 export const MyContextProvider = ({ children }) => {
-  const gpaSystemOptions = { five: 5, four: 4 };
+  const gpaSystemOptions = { five: 5.0, four: 4.0 };
   const [coursesList, setCoursesList] = useState([]);
   const [gpa, setGpa] = useState(0.0);
   const [gpaSystem, setGpaSystem] = useState(gpaSystemOptions.four);
@@ -82,5 +83,19 @@ export const CourseContextProvider = ({ children }) => {
     >
       {children}
     </CourseContext.Provider>
+  );
+};
+
+export const TotalGpaProvider = ({ children }) => {
+  const [oldGpa, setOldGpa] = useState(0.0);
+  const [oldHours, setOldHours] = useState(0.0);
+  const [newGpa, setNewGpa] = useState(0.0);
+
+  return (
+    <TotalGpa.Provider
+      value={{ oldGpa, setOldGpa, oldHours, setOldHours, setNewGpa, newGpa }}
+    >
+      {children}
+    </TotalGpa.Provider>
   );
 };

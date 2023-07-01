@@ -40,6 +40,18 @@ async function calculateGpa(coursesList, system) {
   const newGpa = ((totalEarned / totalHours) * system).toFixed(2);
   return newGpa;
 }
+async function getNewGpa(oldGpa, oldHours, coursesList, system) {
+  let totalHours = await calculateTotalHours(coursesList);
+  let totalEarned = await calculateEarnedHours(coursesList, gradesPoints);
+  let earned = (parseFloat( oldGpa) * parseFloat( oldHours)) / parseFloat( system);
+
+  const hours = parseFloat(totalHours) + parseFloat(oldHours);
+  earned += parseFloat(totalEarned);
+  const newGpa = ((parseFloat(earned) / hours) * system).toFixed(2); 
+   console.log(newGpa)
+
+  return newGpa;
+}
 
 async function getFromStorage(key) {
   const storedList = await AsyncStorage.getItem(key);
@@ -55,4 +67,5 @@ module.exports = {
   calculateEarnedHours,
   calculateGpa,
   getFromStorage,
+  getNewGpa,
 };

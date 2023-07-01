@@ -3,10 +3,14 @@ import { TouchableOpacity, StyleSheet, Text } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Snackbar } from "@react-native-material/core";
-import { MyContext } from "../../context";
+import { MyContext,TotalGpa } from "../../context";
 
-export default function SaveButton() {
+export default function SaveButton({total}) {
   const { coursesList } = useContext(MyContext);
+  if (total) {
+      var { oldGpa,oldHours } = useContext(TotalGpa);
+
+  }
 
   const [showSaveNotification, setShowSaveNotification] = useState(false);
   return (
@@ -16,6 +20,13 @@ export default function SaveButton() {
         style={styles.addBtn}
         onPress={async () => {
           await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
+          if (total) {
+         await AsyncStorage.setItem("oldGpa", JSON.stringify(oldGpa));
+          await AsyncStorage.setItem("oldHours", JSON.stringify(oldHours));
+        }
+       
+
+
           setShowSaveNotification(true);
           setTimeout(() => {
             setShowSaveNotification(false);
