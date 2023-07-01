@@ -1,7 +1,8 @@
-import React, { createContext, useState, useContext, useMemo } from "react";
+import React, { createContext, useState, useContext, useMemo, useEffect } from "react";
 export const MyContext = createContext();
 export const CourseContext = createContext();
 export const TotalGpa = createContext();
+export const ColorContext = createContext();
 
 export const MyContextProvider = ({ children }) => {
   const gpaSystemOptions = { five: 5.0, four: 4.0 };
@@ -97,5 +98,24 @@ export const TotalGpaProvider = ({ children }) => {
     >
       {children}
     </TotalGpa.Provider>
+  );
+};
+
+export const ColorContextProvider = ({ children }) => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  if (darkMode) {
+    var [THEME] = useState("#006CD0");
+    var [TEXT] = useState("#006CD0");
+    var [BACKGROUND] = useState("#ffffff");
+  } else {
+    var [THEME] = useState("#633573");
+    var [TEXT] = useState("#ffffff");
+    var [BACKGROUND] = useState("black");
+  }
+  return (
+    <ColorContext.Provider value={{ THEME, TEXT, BACKGROUND,darkMode,setDarkMode}}>
+      {children}
+    </ColorContext.Provider>
   );
 };

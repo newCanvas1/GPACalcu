@@ -8,7 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import { CourseContext } from "../../context.js";
+import { CourseContext, ColorContext } from "../../context.js";
 import SelectDropdown from "react-native-select-dropdown";
 import DeleteButton from "../Button/DeleteButton";
 const { width } = Dimensions.get("screen");
@@ -19,6 +19,27 @@ export default function Course({ id, item }) {
   const [courseGrade, setGrade] = useState(item.grade);
   const [clicked, setClicked] = useState(false);
   const { updateGrade, updateHours, updateName } = useContext(CourseContext);
+  const { THEME, TEXT } = useContext(ColorContext);
+
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      height: 60,
+      width: width - 20,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor: THEME,
+    },
+    notClicked: { borderBottomRightRadius: 10 },
+    clicked: { borderBottomRightRadius: 140 },
+
+    nameHours: { flexDirection: "column" },
+    row: { backgroundColor: THEME, borderRadius: 20, marginBottom: 10 },
+    rowText: { color: TEXT, fontWeight: "bold" },
+    selectedRow: { backgroundColor: "green" },
+  });
   const styleClicked = [
     { ...styles.container },
     clicked ? { ...styles.clicked } : { ...styles.notClicked },
@@ -35,20 +56,20 @@ export default function Course({ id, item }) {
         <View style={styleClicked}>
           <View style={styles.nameHours}>
             <TextInput
-              style={{ color: "white", fontWeight: "bold", fontSize: 20 }}
+              style={{ color: TEXT, fontWeight: "bold", fontSize: 20 }}
               onChangeText={(name) => {
                 setName(name);
                 updateName(id, name);
               }}
               value={courseName}
               defaultValue={courseName}
-              placeholderTextColor={"white"}
+              placeholderTextColor={TEXT}
               placeholder="Name"
               keyboardType="ascii-capable"
             />
             <View style={{ flexDirection: "row", gap: 10 }}>
               <TextInput
-                style={{ color: "white" }}
+                style={{ color: TEXT }}
                 onChangeText={(hours) => {
                   setHours(hours);
                   updateHours(id, hours);
@@ -56,9 +77,10 @@ export default function Course({ id, item }) {
                 value={`${courseHours}`}
                 defaultValue={`${courseHours}`}
                 placeholder="Hours"
+                placeholderTextColor={TEXT}
                 keyboardType="decimal-pad"
               />
-              <Text style={{ color: "white" }}>H</Text>
+              <Text style={{ color: TEXT }}>H</Text>
             </View>
           </View>
           <View>
@@ -75,7 +97,7 @@ export default function Course({ id, item }) {
                 opacity: 1,
                 color: "white",
               }}
-              buttonTextStyle={{ color: "white", fontWeight: "bold" }}
+              buttonTextStyle={{ color: TEXT, fontWeight: "bold" }}
               onSelect={(grade, index) => {
                 setGrade(grade);
                 updateGrade(id, grade);
@@ -99,23 +121,3 @@ export default function Course({ id, item }) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    height: 60,
-    width: width - 20,
-    padding: 10,
-    borderRadius: 10,
-    backgroundColor: colors.THEME,
-  },
-  notClicked: { borderBottomRightRadius: 10 },
-  clicked: { borderBottomRightRadius: 140 },
-
-  nameHours: { flexDirection: "column" },
-  row: { backgroundColor: colors.THEME, borderRadius: 20, marginBottom: 10 },
-  rowText: { color: "white", fontWeight: "bold" },
-  selectedRow: { backgroundColor: "green" },
-});

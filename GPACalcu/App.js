@@ -1,12 +1,18 @@
 import Navigator from "./components/Navigator/Navigator";
-import { MyContextProvider, CourseContextProvider } from "./context";
+import {
+  MyContextProvider,
+  CourseContextProvider,
+  ColorContextProvider,
+} from "./context";
 function App() {
   return (
-    <MyContextProvider>
-      <CourseContextProvider>
-        <Navigator />
-      </CourseContextProvider>
-    </MyContextProvider>
+    <ColorContextProvider>
+      <MyContextProvider>
+        <CourseContextProvider>
+          <Navigator />
+        </CourseContextProvider>
+      </MyContextProvider>
+    </ColorContextProvider>
   );
 }
 
