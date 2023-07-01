@@ -35,8 +35,8 @@ export default function SaveButton() {
           style={{
             height: 50,
             width: 100,
-            top: -30,
             position: "absolute",
+            alignSelf:"center",
             backgroundColor: "green",
           }}
         />
@@ -48,8 +48,7 @@ export default function SaveButton() {
 }
 const styles = StyleSheet.create({
   addBtn: {
-    position:"absolute"
-    ,top:600
-    ,right:10
+    alignSelf:"flex-end"
+    ,bottom:-300
   },
 });

@@ -23,7 +23,7 @@ export default function Choices() {
 
 const styles = StyleSheet.create({
   buttonsContainer: {
-    gap: "30%",
+    gap: 3,
     alignItems: "center",
   },
 });

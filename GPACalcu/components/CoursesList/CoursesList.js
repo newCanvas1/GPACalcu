@@ -2,7 +2,6 @@ import { StyleSheet, View, FlatList } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useContext } from "react";
 import Course from "../Course/Course";
-import SaveButton from "../Button/SaveButton";
 import AddButton from "../Button/AddButton";
 import { MyContext } from "../../context";
 
@@ -42,7 +41,6 @@ export default function CoursesList() {
             style={{ height: 300 }}
             ItemSeparatorComponent={ItemSeparator}
           />
-          <SaveButton />
         </>
       )}
 
@@ -55,13 +53,5 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-  },
-  addBtn: {
-    alignSelf: "flex-end",
-    marginRight: 20,
-    marginBottom: 10,
-    width: 30,
-    alignItems: "center",
-    borderTopLeftRadius: 30,
   },
 });

@@ -30,7 +30,6 @@ export default function AddButton() {
 const styles = StyleSheet.create({
   addBtn: {
     alignSelf: "flex-end",
-    marginRight: 10,
     marginBottom: 10,
   },
 });

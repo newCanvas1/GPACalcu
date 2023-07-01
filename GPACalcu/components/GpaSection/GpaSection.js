@@ -7,9 +7,9 @@ export default function GpaSection() {
     <View style={styles.container}>
       <Text style={styles.text}>
         {coursesList.length == 0
-          ? "أدخل مواد"
+          ? " أدخل مواد📚"
           : enterHours
-          ? "أدخل ساعات"
+          ? " أدخل ساعات⏱️"
           : gpa}
       </Text>
     </View>
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "80%",
     borderRadius: 10,
+    top:20
   },
   text: {
     color: "#fff",
