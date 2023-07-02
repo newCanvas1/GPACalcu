@@ -25,7 +25,6 @@ export default function Totalscreen() {
         <View style={styles.contentContainer}>
           <BackButton />
           <CoursesList />
-          <SaveButton total={true} />
           <Inputs />
           <TotalGpaSection />
         </View>

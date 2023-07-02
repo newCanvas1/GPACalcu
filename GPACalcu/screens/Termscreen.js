@@ -25,7 +25,6 @@ export default function Termscreen() {
         <CoursesList />
         <CalcGpa />
         <GpaSection />
-        <SaveButton />
       </View>
     </View>
   );

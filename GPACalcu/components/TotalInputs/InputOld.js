@@ -24,11 +24,11 @@ export default function InputOld({ label, set, storageKey }) {
         <Text style={{ color: darkMode ? "#ffffff" : "black" }}> {label}</Text>
       </View>
       <TextInput
-        defaultValue={stored}
+        defaultValue={`${stored}`}
         keyboardType="decimal-pad"
         style={[
           { ...styles.input },
-          { borderColor: darkMode ? "#633573" : "#006CD0" },
+          { borderColor: darkMode ? "#633573" : "#006CD0",color:darkMode?"#ffffff":"black" },
         ]}
         onChangeText={async (text) => {
           set(text);

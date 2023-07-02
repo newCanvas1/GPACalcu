@@ -3,6 +3,7 @@ export const MyContext = createContext();
 export const CourseContext = createContext();
 export const TotalGpa = createContext();
 export const ColorContext = createContext();
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const MyContextProvider = ({ children }) => {
   const gpaSystemOptions = { five: 5.0, four: 4.0 };
@@ -39,7 +40,7 @@ export const MyContextProvider = ({ children }) => {
 
 export const CourseContextProvider = ({ children }) => {
   const { coursesList, setCoursesList } = useContext(MyContext);
-  function updateName(id, newName) {
+  async function updateName(id, newName) {
     const newList = [...coursesList];
     for (let i = 0; i < newList.length; i++) {
       let ele = newList[i];
@@ -48,8 +49,10 @@ export const CourseContextProvider = ({ children }) => {
       }
     }
     setCoursesList(newList);
+    await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
+
   }
-  function updateHours(id, newHours) {
+  async function updateHours(id, newHours) {
     const newList = [...coursesList];
     for (let i = 0; i < newList.length; i++) {
       if (newList[i].id == id) {
@@ -57,8 +60,10 @@ export const CourseContextProvider = ({ children }) => {
       }
     }
     setCoursesList(newList);
+    await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
+
   }
-  function updateGrade(id, newGrade) {
+  async function updateGrade(id, newGrade) {
     const newList = [...coursesList];
     for (let i = 0; i < newList.length; i++) {
       if (newList[i].id == id) {
@@ -66,12 +71,16 @@ export const CourseContextProvider = ({ children }) => {
       }
     }
     setCoursesList(newList);
+    await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
+
   }
-  function deleteCourse(id) {
+  async function deleteCourse(id) {
     let coursesWithoutDeleted = coursesList.filter((course) => {
       return course.id != id;
     });
     setCoursesList(coursesWithoutDeleted);
+    await AsyncStorage.setItem("courses", JSON.stringify(coursesWithoutDeleted));
+
   }
   return (
     <CourseContext.Provider
