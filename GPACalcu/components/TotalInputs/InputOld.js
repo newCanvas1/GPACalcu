@@ -1,18 +1,19 @@
 import { Text, View, TextInput } from "react-native";
 import { styles } from "./style";
-import { useEffect } from "react";
-
+import { useContext, useEffect } from "react";
+import { ColorContext } from "../../context";
 export default function InputOld({ label, set, initial }) {
+  const { TEXT, THEME } = useContext(ColorContext);
   useEffect(() => {}, [initial]);
   return (
     <View styles={styles.container}>
       <View style={styles.label}>
-        <Text> {label}</Text>
+        <Text style={{ color: TEXT }}> {label}</Text>
       </View>
       <TextInput
         defaultValue={initial}
         keyboardType="decimal-pad"
-        style={styles.input}
+        style={[{ ...styles.input }, { borderColor: THEME }]}
         onChangeText={(text) => {
           set(text);
         }}

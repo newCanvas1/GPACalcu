@@ -3,13 +3,14 @@ import { TouchableOpacity, StyleSheet, Text } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Snackbar } from "@react-native-material/core";
-import { MyContext,TotalGpa } from "../../context";
+import { MyContext, TotalGpa, ColorContext } from "../../context";
 
-export default function SaveButton({total}) {
+export default function SaveButton({ total }) {
   const { coursesList } = useContext(MyContext);
-  if (total) {
-      var { oldGpa,oldHours } = useContext(TotalGpa);
+  const { THEME } = useContext(ColorContext);
 
+  if (total) {
+    var { oldGpa, oldHours } = useContext(TotalGpa);
   }
 
   const [showSaveNotification, setShowSaveNotification] = useState(false);
@@ -21,11 +22,9 @@ export default function SaveButton({total}) {
         onPress={async () => {
           await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
           if (total) {
-         await AsyncStorage.setItem("oldGpa", JSON.stringify(oldGpa));
-          await AsyncStorage.setItem("oldHours", JSON.stringify(oldHours));
-        }
-       
-
+            await AsyncStorage.setItem("oldGpa", JSON.stringify(oldGpa));
+            await AsyncStorage.setItem("oldHours", JSON.stringify(oldHours));
+          }
 
           setShowSaveNotification(true);
           setTimeout(() => {
@@ -33,7 +32,7 @@ export default function SaveButton({total}) {
           }, 2000);
         }}
       >
-        <Icon name="content-save-check" size={30} color="#006CD0" />
+        <Icon name="content-save-check" size={30} color={THEME} />
       </TouchableOpacity>
       {showSaveNotification ? (
         <Snackbar
@@ -47,7 +46,7 @@ export default function SaveButton({total}) {
             height: 50,
             width: 100,
             position: "absolute",
-            alignSelf:"center",
+            alignSelf: "center",
             backgroundColor: "green",
           }}
         />
@@ -59,7 +58,7 @@ export default function SaveButton({total}) {
 }
 const styles = StyleSheet.create({
   addBtn: {
-    alignSelf:"flex-end"
-    ,bottom:-300
+    alignSelf: "flex-end",
+    bottom: -300,
   },
 });

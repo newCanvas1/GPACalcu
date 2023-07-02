@@ -6,24 +6,30 @@ const { height } = Dimensions.get("screen");
 import { TotalGpaProvider } from "../context";
 import Inputs from "../components/TotalInputs/Inputs";
 import TotalGpaSection from "../components/TotalGpaSection/TotalGpaSection";
+import { ColorContext } from "../context";
+import { useContext } from "react";
 export default function Totalscreen() {
+  const { BACKGROUND } = useContext(ColorContext);
+  const styles = StyleSheet.create({
+    container: {
+      height: height,
+      paddingHorizontal: 10,
+      backgroundColor: BACKGROUND,
+    },
+    contentContainer: { marginTop: 50 },
+  });
+
   return (
     <TotalGpaProvider>
-      <SafeAreaView>
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <View style={styles.contentContainer}>
           <BackButton />
           <CoursesList />
           <SaveButton total={true} />
           <Inputs />
-          <TotalGpaSection/>
+          <TotalGpaSection />
         </View>
-      </SafeAreaView>
+      </View>
     </TotalGpaProvider>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    height: height,
-    paddingHorizontal: 10,
-  },
-});

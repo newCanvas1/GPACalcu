@@ -12,19 +12,21 @@ export default function Termscreen() {
 
   const styles = StyleSheet.create({
     container: {
-      marginTop: 50,
       height: height,
       paddingHorizontal: 10,
       backgroundColor: BACKGROUND,
     },
+    contentContainer: { marginTop: 50 },
   });
   return (
     <View style={styles.container}>
-      <BackButton />
-      <CoursesList />
-      <CalcGpa />
-      <GpaSection />
-      <SaveButton />
+      <View style={styles.contentContainer}>
+        <BackButton />
+        <CoursesList />
+        <CalcGpa />
+        <GpaSection />
+        <SaveButton />
+      </View>
     </View>
   );
 }

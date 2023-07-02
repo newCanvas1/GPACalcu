@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
   container: { backgroundColor: "blue", opacity: 0 },
   input: {
     border: 10,
-    borderColor: "blue",
     borderWidth: 2,
     marginVertical: 10,
     padding: 10,
