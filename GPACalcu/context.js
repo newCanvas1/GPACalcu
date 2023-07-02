@@ -102,16 +102,15 @@ export const TotalGpaProvider = ({ children }) => {
 };
 
 export const ColorContextProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
-useEffect(()=>{},[darkMode])
+  const [darkMode, setDarkMode] = useState(true);
   if (darkMode) {
-    var [THEME] = useState("#006CD0");
-    var [TEXT] = useState("#006CD0");
-    var [BACKGROUND] = useState("#ffffff");
-  } else {
-    var [THEME] = useState("#633573");
+      var [THEME] = useState("#633573");
     var [TEXT] = useState("#ffffff");
     var [BACKGROUND] = useState("black");
+  } else {
+    var [THEME] = useState("#006CD0");
+    var [TEXT] = useState("#ffffff");
+    var [BACKGROUND] = useState("#ffffff");
   }
   return (
     <ColorContext.Provider value={{ THEME, TEXT, BACKGROUND,darkMode,setDarkMode}}>

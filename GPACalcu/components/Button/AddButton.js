@@ -4,11 +4,9 @@ import { MyContext, ColorContext } from "../../context";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 export default function AddButton() {
   const { coursesList, setCoursesList } = useContext(MyContext);
-  const { THEME,setDarkMode,darkMode } = useContext(ColorContext);
+  const {darkMode } = useContext(ColorContext);
 
   function addCourse() {
-    setDarkMode(prev=>!prev)
-    console.log(darkMode)
     let newID = coursesList.length;
     setCoursesList([
       ...coursesList,
@@ -26,7 +24,7 @@ export default function AddButton() {
       style={styles.addBtn}
       onPress={addCourse}
     >
-      <Icon name="plus-box" size={30} color={THEME} />
+      <Icon name="plus-box" size={30} color={darkMode?"#633573":"#006CD0"} />
     </TouchableOpacity>
   );
 }

@@ -7,7 +7,7 @@ import { MyContext, TotalGpa, ColorContext } from "../../context";
 
 export default function SaveButton({ total }) {
   const { coursesList } = useContext(MyContext);
-  const { THEME } = useContext(ColorContext);
+  const { darkMode } = useContext(ColorContext);
 
   if (total) {
     var { oldGpa, oldHours } = useContext(TotalGpa);
@@ -21,18 +21,14 @@ export default function SaveButton({ total }) {
         style={styles.addBtn}
         onPress={async () => {
           await AsyncStorage.setItem("courses", JSON.stringify(coursesList));
-          if (total) {
-            await AsyncStorage.setItem("oldGpa", JSON.stringify(oldGpa));
-            await AsyncStorage.setItem("oldHours", JSON.stringify(oldHours));
-          }
-
+        
           setShowSaveNotification(true);
           setTimeout(() => {
             setShowSaveNotification(false);
           }, 2000);
         }}
       >
-        <Icon name="content-save-check" size={30} color={THEME} />
+        <Icon name="content-save-check" size={30} color={darkMode?"#633573":"#006CD0"} />
       </TouchableOpacity>
       {showSaveNotification ? (
         <Snackbar

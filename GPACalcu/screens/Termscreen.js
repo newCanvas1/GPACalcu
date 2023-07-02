@@ -8,13 +8,13 @@ import { useContext } from "react";
 import { ColorContext } from "../context";
 const { height } = Dimensions.get("screen");
 export default function Termscreen() {
-  const { BACKGROUND } = useContext(ColorContext);
+  const { darkMode } = useContext(ColorContext);
 
   const styles = StyleSheet.create({
     container: {
       height: height,
       paddingHorizontal: 10,
-      backgroundColor: BACKGROUND,
+      backgroundColor: darkMode?"black":"#ffffff",
     },
     contentContainer: { marginTop: 50 },
   });

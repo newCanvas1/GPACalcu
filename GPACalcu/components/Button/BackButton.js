@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import { ColorContext } from "../../context";
 export default function BackButton() {
-  const { THEME } = useContext(ColorContext);
+  const { darkMode } = useContext(ColorContext);
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -13,7 +13,7 @@ export default function BackButton() {
       }}
       activeOpacity={1}
     >
-      <Icon name="arrow-left" size={30} color={THEME} />
+      <Icon name="arrow-left" size={30} color={darkMode?"#633573":"#006CD0"} />
     </TouchableOpacity>
   );
 }

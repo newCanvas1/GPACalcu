@@ -1,12 +1,12 @@
 import React from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { useContext } from "react";
 import { ColorContext } from "../../context";
 export default function Button({ text, action }) {
-  const { THEME, TEXT } = useContext(ColorContext);
+  const { darkMode } = useContext(ColorContext);
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: THEME,
+      backgroundColor: darkMode?"#633573":"#006CD0",
       padding: 40,
       borderRadius: 10,
       height: "25%",
@@ -14,7 +14,7 @@ export default function Button({ text, action }) {
       justifyContent: "center",
       alignItems: "center",
     },
-    btnText: { color: TEXT, fontSize: 20, fontWeight: "bold" },
+    btnText: { color: "#ffffff", fontSize: 20, fontWeight: "bold" },
   });
 
   return (

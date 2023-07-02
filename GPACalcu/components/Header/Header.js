@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { useContext } from "react";
 import { ColorContext } from "../../context";
 export default function Header() {
-  const { TEXT } = useContext(ColorContext);
+  const { darkMode } = useContext(ColorContext);
   const styles = StyleSheet.create({
     headerContainer: {
       marginTop: "5%",
@@ -11,7 +11,7 @@ export default function Header() {
       left: "70%",
     },
     header: {
-      color: TEXT,
+      color: darkMode?"#ffffff":"black",
       fontSize: 20,
     },
   });

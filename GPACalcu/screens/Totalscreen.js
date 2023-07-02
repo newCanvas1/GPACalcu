@@ -9,12 +9,12 @@ import TotalGpaSection from "../components/TotalGpaSection/TotalGpaSection";
 import { ColorContext } from "../context";
 import { useContext } from "react";
 export default function Totalscreen() {
-  const { BACKGROUND } = useContext(ColorContext);
+  const { darkMode } = useContext(ColorContext);
   const styles = StyleSheet.create({
     container: {
       height: height,
       paddingHorizontal: 10,
-      backgroundColor: BACKGROUND,
+      backgroundColor: darkMode?"black":"#ffffff",
     },
     contentContainer: { marginTop: 50 },
   });

@@ -19,7 +19,7 @@ export default function Course({ id, item }) {
   const [courseGrade, setGrade] = useState(item.grade);
   const [clicked, setClicked] = useState(false);
   const { updateGrade, updateHours, updateName } = useContext(CourseContext);
-  const { THEME, TEXT } = useContext(ColorContext);
+  const { darkMode } = useContext(ColorContext);
 
   const styles = StyleSheet.create({
     container: {
@@ -30,14 +30,13 @@ export default function Course({ id, item }) {
       width: width - 20,
       padding: 10,
       borderRadius: 10,
-      backgroundColor: THEME,
+      backgroundColor: darkMode?"#633573":"#006CD0",
     },
     notClicked: { borderBottomRightRadius: 10 },
     clicked: { borderBottomRightRadius: 140 },
-
     nameHours: { flexDirection: "column" },
-    row: { backgroundColor: THEME, borderRadius: 20, marginBottom: 10 },
-    rowText: { color: TEXT, fontWeight: "bold" },
+    row: { backgroundColor: "#006CD0", borderRadius: 20, marginBottom: 10 },
+    rowText: { color: "#ffffff", fontWeight: "bold" },
     selectedRow: { backgroundColor: "green" },
   });
   const styleClicked = [
@@ -56,20 +55,20 @@ export default function Course({ id, item }) {
         <View style={styleClicked}>
           <View style={styles.nameHours}>
             <TextInput
-              style={{ color: TEXT, fontWeight: "bold", fontSize: 20 }}
+              style={{ color: darkMode?"#ffffff":"#ffffff", fontWeight: "bold", fontSize: 20 }}
               onChangeText={(name) => {
                 setName(name);
                 updateName(id, name);
               }}
               value={courseName}
               defaultValue={courseName}
-              placeholderTextColor={TEXT}
+              placeholderTextColor={darkMode?"#ffffff":"#ffffff"}
               placeholder="Name"
               keyboardType="ascii-capable"
             />
             <View style={{ flexDirection: "row", gap: 10 }}>
               <TextInput
-                style={{ color: TEXT }}
+                style={{ color: darkMode?"#ffffff":"#ffffff" }}
                 onChangeText={(hours) => {
                   setHours(hours);
                   updateHours(id, hours);
@@ -77,10 +76,10 @@ export default function Course({ id, item }) {
                 value={`${courseHours}`}
                 defaultValue={`${courseHours}`}
                 placeholder="Hours"
-                placeholderTextColor={TEXT}
+                placeholderTextColor={darkMode?"#ffffff":"#ffffff"}
                 keyboardType="decimal-pad"
               />
-              <Text style={{ color: TEXT }}>H</Text>
+              <Text style={{ color: darkMode?"#ffffff":"#ffffff" }}>H</Text>
             </View>
           </View>
           <View>
@@ -97,7 +96,7 @@ export default function Course({ id, item }) {
                 opacity: 1,
                 color: "white",
               }}
-              buttonTextStyle={{ color: TEXT, fontWeight: "bold" }}
+              buttonTextStyle={{ color: darkMode?"#ffffff":"#ffffff", fontWeight: "bold" }}
               onSelect={(grade, index) => {
                 setGrade(grade);
                 updateGrade(id, grade);

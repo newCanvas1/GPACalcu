@@ -4,19 +4,19 @@ import { TotalGpa, MyContext, ColorContext } from "../../context";
 export default function TotalGpaSection() {
   const { newGpa } = useContext(TotalGpa);
   const { coursesList, enterHours } = useContext(MyContext);
-  const { THEME, TEXT } = useContext(ColorContext);
+  const { darkMode } = useContext(ColorContext);
 
   const styles = StyleSheet.create({
     container: {
       alignSelf: "center",
-      backgroundColor: THEME,
+      backgroundColor: darkMode?"#633573":"#006CD0",
       padding: 10,
       width: "80%",
       borderRadius: 10,
       top: 20,
     },
     text: {
-      color: TEXT,
+      color: "#ffffff",
       fontWeight: "bold",
       alignSelf: "center",
       fontSize: 20,
