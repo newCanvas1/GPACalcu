@@ -22,9 +22,12 @@ export default function DarkModeToggle() {
       position: "absolute",
       marginTop: 80,
       marginLeft: 20,
+      backgroundColor:darkMode?"#633573":"#006CD0"
+      ,padding:4
+      ,borderRadius:10
     },
-    general: { borderRadius: 4, padding: 1 },
-    toggled: { backgroundColor: darkMode ? "#ffffff" : "black" },
+    general: { borderRadius: 4, padding: 1},
+    toggled: { transform:[{scale:1.2}]},
   });
 
   return (
