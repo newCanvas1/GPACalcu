@@ -18,37 +18,37 @@ export default function DarkModeToggle() {
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row",
-      gap: 10,
       position: "absolute",
       marginTop: 80,
       marginLeft: 20,
-      backgroundColor:darkMode?"#633573":"#006CD0"
-      ,padding:4
-      ,borderRadius:10
     },
-    general: { borderRadius: 4, padding: 1},
-    toggled: { transform:[{scale:1.2}]},
+    general: {
+      borderRadius: 4,
+      padding: 1,
+      position: "absolute",
+      zIndex: -1,
+      transform: [{ translateX: -9 }, { translateY: 9 },{scale:0.8}],
+    },
+    toggled: { transform: [{ scale: 1.2 }], zIndex: 1 },
   });
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={[!darkMode && styles.toggled, styles.general]}
         onPress={async () => {
-          setDarkMode(false);
+          setDarkMode((prev) => {
+            return !prev;
+          });
+          console.log(darkMode);
           await AsyncStorage.setItem("darkmode", JSON.stringify(false));
         }}
       >
-        <Text>🌝</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[darkMode && styles.toggled, styles.general]}
-        onPress={async () => {
-          setDarkMode(true);
-          await AsyncStorage.setItem("darkmode", JSON.stringify(true));
-        }}
-      >
-        <Text>🌚</Text>
+        <View style={[styles.general, !darkMode && styles.toggled]}>
+          <Text>🌝</Text>
+        </View>
+        <View style={[styles.general, darkMode && styles.toggled]}>
+          <Text>🌚</Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
