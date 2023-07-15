@@ -5,9 +5,10 @@ import { ColorContext } from "../../context";
 export default function DarkModeToggle() {
   const { darkMode, setDarkMode } = useContext(ColorContext);
   async function getMode() {
-    let darkStorage = await AsyncStorage.getItem("darkmode");
+    let darkStorage = JSON.parse(await AsyncStorage.getItem("darkmode"));
+    console.log(darkStorage)
     if (darkStorage) {
-      setDarkMode(JSON.parse(darkStorage));
+      setDarkMode(darkStorage);
     } else {
       await AsyncStorage.setItem("darkmode", JSON.stringify(darkMode));
     }
@@ -27,7 +28,7 @@ export default function DarkModeToggle() {
       padding: 1,
       position: "absolute",
       zIndex: -1,
-      transform: [{ translateX: -9 }, { translateY: 9 },{scale:0.8}],
+      transform: [{ translateX: -9 }, { translateY: 9 }, { scale: 0.8 }],
     },
     toggled: { transform: [{ scale: 1.2 }], zIndex: 1 },
   });
@@ -35,12 +36,11 @@ export default function DarkModeToggle() {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={async () => {
+        onPress={async () => {       
+             await AsyncStorage.setItem("darkmode", JSON.stringify(!darkMode));
           setDarkMode((prev) => {
             return !prev;
           });
-          console.log(darkMode);
-          await AsyncStorage.setItem("darkmode", JSON.stringify(false));
         }}
       >
         <View style={[styles.general, !darkMode && styles.toggled]}>

@@ -14,7 +14,8 @@ export default function Totalscreen() {
     container: {
       height: height,
       paddingHorizontal: 10,
-      backgroundColor: darkMode?"black":"#ffffff",
+      backgroundColor: darkMode ? "black" : "#ffffff",
+      flexDirection: "column",
     },
     contentContainer: { marginTop: 50 },
   });
@@ -25,6 +26,8 @@ export default function Totalscreen() {
         <View style={styles.contentContainer}>
           <BackButton />
           <CoursesList />
+        </View>
+        <View>
           <Inputs />
           <TotalGpaSection />
         </View>

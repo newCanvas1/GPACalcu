@@ -30,12 +30,15 @@ export default function Course({ id, item }) {
       width: width - 20,
       padding: 10,
       borderRadius: 10,
-      backgroundColor: darkMode?"#633573":"#006CD0",
+      backgroundColor: darkMode ? "#633573" : "#006CD0",
     },
     notClicked: { borderBottomRightRadius: 10 },
     clicked: { borderBottomRightRadius: 140 },
     nameHours: { flexDirection: "column" },
-    row: { backgroundColor: "#006CD0", borderRadius: 20, marginBottom: 10 },
+    row: {
+      backgroundColor: "#633573",
+      borderRadius: 5,
+    },
     rowText: { color: "#ffffff", fontWeight: "bold" },
     selectedRow: { backgroundColor: "green" },
   });
@@ -55,20 +58,24 @@ export default function Course({ id, item }) {
         <View style={styleClicked}>
           <View style={styles.nameHours}>
             <TextInput
-              style={{ color: darkMode?"#ffffff":"#ffffff", fontWeight: "bold", fontSize: 20 }}
+              style={{
+                color: darkMode ? "#ffffff" : "#ffffff",
+                fontWeight: "bold",
+                fontSize: 20,
+              }}
               onChangeText={(name) => {
                 setName(name);
                 updateName(id, name);
               }}
               value={courseName}
               defaultValue={courseName}
-              placeholderTextColor={darkMode?"#ffffff":"#ffffff"}
+              placeholderTextColor={darkMode ? "#ffffff" : "#ffffff"}
               placeholder="Name"
               keyboardType="ascii-capable"
             />
             <View style={{ flexDirection: "row", gap: 10 }}>
               <TextInput
-                style={{ color: darkMode?"#ffffff":"#ffffff" }}
+                style={{ color: darkMode ? "#ffffff" : "#ffffff" }}
                 onChangeText={(hours) => {
                   setHours(hours);
                   updateHours(id, hours);
@@ -76,14 +83,15 @@ export default function Course({ id, item }) {
                 value={`${courseHours}`}
                 defaultValue={`${courseHours}`}
                 placeholder="Hours"
-                placeholderTextColor={darkMode?"#ffffff":"#ffffff"}
+                placeholderTextColor={darkMode ? "#ffffff" : "#ffffff"}
                 keyboardType="decimal-pad"
               />
-              <Text style={{ color: darkMode?"#ffffff":"#ffffff" }}>H</Text>
+              <Text style={{ color: darkMode ? "#ffffff" : "#ffffff" }}>H</Text>
             </View>
           </View>
           <View>
             <SelectDropdown
+            
               rowStyle={styles.row}
               rowTextStyle={styles.rowText}
               selectedRowStyle={styles.selectedRow}
@@ -96,7 +104,10 @@ export default function Course({ id, item }) {
                 opacity: 1,
                 color: "white",
               }}
-              buttonTextStyle={{ color: darkMode?"#ffffff":"#ffffff", fontWeight: "bold" }}
+              buttonTextStyle={{
+                color: darkMode ? "#ffffff" : "#ffffff",
+                fontWeight: "bold",
+              }}
               onSelect={(grade, index) => {
                 setGrade(grade);
                 updateGrade(id, grade);

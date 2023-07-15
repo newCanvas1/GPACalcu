@@ -111,7 +111,7 @@ export const TotalGpaProvider = ({ children }) => {
 };
 
 export const ColorContextProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   if (darkMode) {
       var [THEME] = useState("#633573");
     var [TEXT] = useState("#ffffff");

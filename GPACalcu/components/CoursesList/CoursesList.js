@@ -33,16 +33,14 @@ export default function CoursesList() {
   return (
     <View style={styles.container}>
       <AddButton />
-      {coursesList != 0 && (
-        <>
+     
           <FlatList
             data={coursesList}
             renderItem={renderItem}
-            style={{ height: 300 }}
             ItemSeparatorComponent={ItemSeparator}
           />
-        </>
-      )}
+       
+     
 
     </View>
   );
@@ -53,5 +51,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    height:300
   },
 });
