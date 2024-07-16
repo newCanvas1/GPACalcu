@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Navigator from "./components/Navigator/Navigator";
 import {
   MyContextProvider,
@@ -5,6 +6,7 @@ import {
   ColorContextProvider,
 } from "./context";
 function App() {
+
   return (
     <ColorContextProvider>
       <MyContextProvider>
